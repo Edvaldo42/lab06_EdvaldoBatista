@@ -2,16 +2,17 @@ package lab06;
 
 import java.util.HashSet;
 
-public class Jogo {
+public abstract class Jogo {
 
 	private String nome;
 	private int valor;
 	private int maiorScore = 0;
 	private int qtdJogado = 0;
 	private int qtdZerado = 0;
-	private HashSet <Jogabilidade> jogabilidades; 
+	private HashSet<Jogabilidade> jogabilidades;
 
-	public Jogo(String nome, int valor, int maiorScore, int qtdJogado, int qtdZerado, HashSet <Jogabilidade> jogabilidades) {
+	public Jogo(String nome, int valor, int maiorScore, int qtdJogado, int qtdZerado,
+			HashSet<Jogabilidade> jogabilidades) {
 		this.nome = nome;
 		this.valor = valor;
 		this.maiorScore = maiorScore;
@@ -20,16 +21,7 @@ public class Jogo {
 		this.jogabilidades = jogabilidades;
 	}
 
-	public void registraJogada(int score, boolean zerado) {
-		aumentaQtdJogado(1);
-		if (score > this.maiorScore) {
-			setMaiorScore(score);
-		}
-		if (zerado) {
-			aumentaQtdZerado(1);
-		}
-	}
-	
+	public abstract int registraJogada(int score, boolean zerou);
 
 	public String getNome() {
 		return nome;
@@ -66,6 +58,5 @@ public class Jogo {
 	public HashSet<Jogabilidade> getJogabilidades() {
 		return jogabilidades;
 	}
-	
-}
 
+}
