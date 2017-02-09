@@ -6,8 +6,15 @@ public class Noob extends Usuario {
 
 	public Noob(String nome, String login, HashSet<Jogo> jogosComparados, int qtdDinheiro) {
 		super(nome, login, jogosComparados, qtdDinheiro);
+		super.x2p = 0;
 
 	}
 	
+	public void ganhaX2pCompra(int precoJogo) {
+		super.x2p += (10 * precoJogo);
+		
+	}
+	
+	public void ganhaX2pJogando()
 	
 }
