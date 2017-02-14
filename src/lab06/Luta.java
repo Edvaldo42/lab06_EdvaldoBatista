@@ -10,7 +10,12 @@ public class Luta extends Jogo {
 	}
 
 	public int registraJogada(int score, boolean zerou) {
-		if (score > super.maiorScore) {
+		super.aumentaQtdJogado(1);
+		if (zerou) {
+			super.aumentaQtdZerado(1);
+		}
+
+		if (score > super.getMaiorScore()) {
 			return score / 1000;
 		}
 		return 0;

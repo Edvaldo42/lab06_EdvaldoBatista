@@ -11,6 +11,10 @@ public class Plataforma extends Jogo {
 	}
 
 	public int registraJogada(int score, boolean zerou) {
+		super.aumentaQtdJogado(1);
+		if (score > super.getMaiorScore()) {
+			super.setMaiorScore(score);
+		}
 		if (zerou == true) {
 			return 20;
 		}

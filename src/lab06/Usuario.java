@@ -2,7 +2,7 @@ package lab06;
 
 import java.util.HashSet;
 
-public class Usuario {
+public abstract class Usuario {
 
 	private String nome;
 	private String login;
@@ -27,13 +27,17 @@ public class Usuario {
 
 	public abstract void ganhaX2pCompra(int precoJogo);
 
-	public abstract void ganhaX2pJogando(int precoJogo);
-
 	public void addSaldo(int dinheiro) {
 		this.saldo += dinheiro;
 	}
 
-	public abstract int registraJogada(nomeDoJogo, score, zerou);
+	public void registraJogada(String nomeDoJogo, int score, boolean zerou) {
+		for (Jogo jogo : this.jogosComparados) {
+			if (jogo.getNome().equals(nomeDoJogo)) {
+				jogo.registraJogada(score, zerou);
+			}
+		}
+	}
 
 	public String getNome() {
 		return nome;
