@@ -7,14 +7,14 @@ public abstract class Usuario {
 	private String nome;
 	private String login;
 	private HashSet<Jogo> jogosComparados;
-	private int saldo;
+	private double saldo;
 	protected int x2p;
 
-	public Usuario(String nome, String login, HashSet<Jogo> jogosComparados, int saldo) {
+	public Usuario(String nome, String login) {
 		this.nome = nome;
 		this.login = login;
-		this.jogosComparados = jogosComparados;
-		this.saldo = saldo;
+		jogosComparados = new HashSet<>();
+		saldo = 0;
 	}
 
 	public void compraJogo(Jogo jogo) {
@@ -25,8 +25,9 @@ public abstract class Usuario {
 		}
 	}
 
-	public abstract void ganhaX2pCompra(int precoJogo);
+	public abstract void ganhaX2pCompra(double precoJogo);
 
+<<<<<<< HEAD
 	public void addSaldo(int dinheiro) {
 		this.saldo += dinheiro;
 	}
@@ -39,6 +40,14 @@ public abstract class Usuario {
 		}
 	}
 
+=======
+	public abstract void registraJogada(String nomeDoJogo, int score, boolean zerou) throws Exception;
+	
+	public void addSaldo(double dinheiro) {
+		this.saldo += dinheiro;
+	}
+
+>>>>>>> 27002c0d2a1ae604f70cb741db04d296076c0db8
 	public String getNome() {
 		return nome;
 	}
@@ -51,7 +60,7 @@ public abstract class Usuario {
 		return jogosComparados;
 	}
 
-	public int getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
