@@ -2,19 +2,19 @@ package lab06;
 
 import java.util.HashSet;
 
-public class Usuario {
+public abstract class Usuario {
 
 	private String nome;
 	private String login;
 	private HashSet<Jogo> jogosComparados;
-	private int saldo;
+	private double saldo;
 	protected int x2p;
 
-	public Usuario(String nome, String login, HashSet<Jogo> jogosComparados, int saldo) {
+	public Usuario(String nome, String login) {
 		this.nome = nome;
 		this.login = login;
-		this.jogosComparados = jogosComparados;
-		this.saldo = saldo;
+		jogosComparados = new HashSet<>();
+		saldo = 0;
 	}
 
 	public void compraJogo(Jogo jogo) {
@@ -25,15 +25,13 @@ public class Usuario {
 		}
 	}
 
-	public abstract void ganhaX2pCompra(int precoJogo);
+	public abstract void ganhaX2pCompra(double precoJogo);
 
-	public abstract void ganhaX2pJogando(int precoJogo);
-
-	public void addSaldo(int dinheiro) {
+	public abstract void registraJogada(String nomeDoJogo, int score, boolean zerou) throws Exception;
+	
+	public void addSaldo(double dinheiro) {
 		this.saldo += dinheiro;
 	}
-
-	public abstract int registraJogada(nomeDoJogo, score, zerou);
 
 	public String getNome() {
 		return nome;
@@ -47,7 +45,7 @@ public class Usuario {
 		return jogosComparados;
 	}
 
-	public int getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
