@@ -1,39 +1,31 @@
 package lab06;
 
-import java.util.HashSet;
-
 public class Noob extends Usuario {
 
-	public Noob(String nome, String login) {
+	public Noob(String nome, String login) throws Exception {
 		super(nome, login);
 		super.x2p = 0;
 	}
-<<<<<<< HEAD
+
+	public void ganhaX2pCompra(double precoJogo) {
+		super.x2p += (10 * precoJogo);
+
+	}
 	
 	@Override
-	public void ganhaX2pCompra(int precoJogo) {
-		super.x2p += (10 * precoJogo);
-	}
-}
-=======
-
-	@Override
-	public void ganhaX2pCompra(double precoJogo) {
-			super.x2p += (10 * precoJogo.parseInt());
-			
-		}
-
-	@Override
-	public void registraJogada(String nomeDoJogo, int score, boolean zerou) throws Exception{
-		for (Jogo jogo : super.getJogosComparados()) {
-			if (jogo.getNome().equals(nomeDoJogo)) {
-				jogo.registraJogada(score, zerou);
-			} else {
-				throw new Exception("Jogo nao foi comprado");
+	public boolean compraJogo (Jogo jogo) {
+		if (!(super.getJogosComparados().contains(jogo))) {
+			if ((jogo.getValor() * 0.9) < super.getSaldo()) {
+			super.getJogosComparados().add(jogo);
+			ganhaX2pCompra(jogo.getValor());
+			return true;
 			}
 		}
-		
+		return false;
 	}
-		
+
+	@Override
+	public String toString() {
+		return getNome() + " - Jogador Noob";
+	}	
 }
->>>>>>> 27002c0d2a1ae604f70cb741db04d296076c0db8

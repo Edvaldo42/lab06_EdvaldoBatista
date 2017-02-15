@@ -4,22 +4,20 @@ import java.util.HashSet;
 
 public class Luta extends Jogo {
 
-	public Luta(String nome, int valor, int maiorScore, int qtdJogado, int qtdZerado,
-			HashSet<Jogabilidade> jogabilidades) {
-		super(nome, valor, maiorScore, qtdJogado, qtdZerado, jogabilidades);
+	public Luta(String nome, int valor, HashSet<Jogabilidade> jogabilidades) throws Exception {
+		super(nome, valor, jogabilidades);
 	}
 
+	@Override
 	public int registraJogada(int score, boolean zerou) {
-<<<<<<< HEAD
-		super.aumentaQtdJogado(1);
+		super.aumentaQtdJogado();
 		if (zerou) {
-			super.aumentaQtdZerado(1);
+			super.aumentaQtdZerado(zerou);
 		}
-
-=======
->>>>>>> 27002c0d2a1ae604f70cb741db04d296076c0db8
-		if (score > super.getMaiorScore()) {
-			return score / 1000;
+		if (score <= 100000){
+			if (score > super.getMaiorScore()) {
+				return score / 1000;
+			}
 		}
 		return 0;
 	}

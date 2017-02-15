@@ -1,25 +1,31 @@
 package lab06;
 
-import java.util.HashSet;
-
 public class Veterano extends Usuario {
 
-<<<<<<< HEAD
-	public Veterano(String nome, String login, HashSet<Jogo> jogosComparados, int saldo) {
-		super(nome, login, jogosComparados, saldo);
-	}
-
-	@Override
-	public void ganhaX2pCompra(int precoJogo) {
-		super.x2p += 15 * precoJogo;
-	}
-=======
-	public Veterano(String nome, String login) {
+	public Veterano(String nome, String login) throws Exception {
 		super(nome, login);
-		
+		super.x2p = 0;
 	}
-
 	
->>>>>>> 27002c0d2a1ae604f70cb741db04d296076c0db8
+	public void ganhaX2pCompra(double precoJogo) {
+		super.x2p += (15 * precoJogo);
 
+	}	
+	
+	@Override
+	public boolean compraJogo (Jogo jogo) {
+		if (!(super.getJogosComparados().contains(jogo))) {
+			if ((jogo.getValor() * 0.85) < super.getSaldo()) {
+			super.getJogosComparados().add(jogo);
+			ganhaX2pCompra(jogo.getValor());
+			return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return getNome() + " - Jogador Veterano";
+	}
 }

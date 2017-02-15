@@ -4,19 +4,18 @@ import java.util.HashSet;
 
 public class RPG extends Jogo {
 
-	public RPG(String nome, int valor, int maiorScore, int qtdJogado, int qtdZerado,
-			HashSet<Jogabilidade> jogabilidades) {
-		super(nome, valor, maiorScore, qtdJogado, qtdZerado, jogabilidades);
-
+	public RPG(String nome, int valor, HashSet<Jogabilidade> jogabilidades) throws Exception {
+		super(nome, valor, jogabilidades);
 	}
 
+	@Override
 	public int registraJogada(int score, boolean zerou) {
-		super.aumentaQtdJogado(1);
+		super.aumentaQtdJogado();
 		if (score > super.getMaiorScore()) {
 			super.setMaiorScore(score);
 		}
 		if (zerou) {
-			super.aumentaQtdZerado(1);
+			super.aumentaQtdZerado(zerou);
 		}
 		return 10;
 	}
