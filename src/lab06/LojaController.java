@@ -5,18 +5,19 @@ import java.util.Scanner;
 
 public class LojaController {
 
-	private static HashSet<Usuario> listaUsuarios = new HashSet<>();
-
-	public void adicionaUsuario(Usuario usuario) {
-		listaUsuarios.add(usuario);
-	}
-
+	private HashSet<Usuario> listaUsuarios = new HashSet<>();
+	private  FactoryDeUsuario fabricaUsuario = new FactoryDeUsuario(); 
+	private  FactoryDeJogo fabricaJogo = new FactoryDeJogo();
+	
 	public void criaUsuario(String nome, String login) throws Exception {
-		Usuario usuario = new Noob(nome, login);
-		adicionaUsuario(usuario);
+		Usuario novoUsuario = fabricaUsuario.criaUsuario(nome, login, "Noob");
+		if (!(listaUsuarios.contains(novoUsuario))) {
+			listaUsuarios.add(novoUsuario);
+		}
+		throw new Exception();
 	}
 
-	public static Usuario procuraUsuario(String login) {
+	public Usuario procuraUsuario(String login) {
 		for (Usuario usuario : listaUsuarios) {
 			if (usuario.getLogin().equals(login)) {
 				return usuario;
@@ -31,17 +32,16 @@ public class LojaController {
 		}
 	}
 
-	public void vendeJogo(Jogo jogo, String login) throws Exception {
+	public void vendeJogo(String login, String nomeJogo, double valor, String tipoJogo, HashSet<Jogabilidade> listaEstilo) throws Exception {
 			if (procuraUsuario(login) != null) {
-				Usuario usuario = procuraUsuario(login);  
-				if (!(usuario.getJogosComparados().contains(jogo))) {
-					usuario.compraJogo(jogo);
-				} else {
-					throw new Exception("O jogo ja fora comprado");
+				Usuario usuario = procuraUsuario(login);
+				Jogo novoJogo = fabricaJogo.criaJogo(nomeJogo, valor, tipoJogo, listaEstilo);
+				if (!(usuario.getJogosComparados().contains(novoJogo))) {
+					usuario.getJogosComparados().add(novoJogo);
 				}
-			} else {
-				throw new Exception("O usuario nao existe");
+				throw new Exception("Jogo ja comprado");
 		}
+			throw new Exception("Usuario nao existe");
 	}
 	
 	
@@ -63,7 +63,7 @@ public class LojaController {
 		}
 	}
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 
 		System.out.println("=== Central P2-CG ===\n");

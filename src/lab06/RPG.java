@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class RPG extends Jogo {
 
-	public RPG(String nome, int valor, HashSet<Jogabilidade> jogabilidades) throws Exception {
+	public RPG(String nome, double valor, HashSet<Jogabilidade> jogabilidades) throws Exception {
 		super(nome, valor, jogabilidades);
 	}
 

@@ -5,13 +5,13 @@ import java.util.HashSet;
 public abstract class Jogo {
 
 	private String nome;
-	private int valor;
+	private double valor;
 	private int maiorScore;
 	private int qtdJogado;
 	private int qtdZerado;
 	private HashSet<Jogabilidade> jogabilidades;
 
-	public Jogo(String nome, int valor, HashSet<Jogabilidade> jogabilidades) throws Exception {
+	public Jogo(String nome, double valor, HashSet<Jogabilidade> jogabilidades) throws Exception {
 		if (this.nome.equals(null) || this.nome.trim().equals("")) {
 			throw new Exception("Nome de jogo nao pode ser null ou vazio");
 		}
@@ -32,7 +32,7 @@ public abstract class Jogo {
 		return nome;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
